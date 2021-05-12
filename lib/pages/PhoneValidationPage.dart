@@ -74,13 +74,16 @@ class _PhoneValidationPageState extends State<PhoneValidationPage> {
     BlocProvider.of<GlobalCubit>(context).addPhoneInput('$countryCode-$phoneNumber');
 
     String accountId = 'AC087e870bc3dc3100d876c5e49a891e05';
-    String token = '4b60a7928461f6eef71ff3af9bcc32c2';
+    String token = '0415f952a7dfacb9e7c7fd6f65e2fca8';
     String auth = '$accountId:$token@';
 
     Response? response;
     try {
+      print('https://${auth}lookups.twilio.com/v1/PhoneNumbers/$countryCode$phoneNumber');
       response = await Dio().get('https://${auth}lookups.twilio.com/v1/PhoneNumbers/$countryCode$phoneNumber');
-    } catch (e) {}
+    } catch (e) {
+      print(e.toString());
+    }
 
     print(response.toString());
 
